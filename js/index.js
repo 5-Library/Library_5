@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.test').click(function() {
-        console.log('클릭됨!');
+    $('.create-btn').click(function() {
+        window.open('createPage.html', '_blank');
     });
 });

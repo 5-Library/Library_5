@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="module" src="../js/data.js"></script>
+    <script type="module" src="../js/index.js"></script>
+    <title>라이브러리 추가하기</title>
+</head>
+
+<style>
+    .create-info-wrap {
+        max-width: 1000px;
+        width: 100%;
+        padding: 125px 75px;
+        background: #FFF;
+        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 40px;
+        z-index: 5;
+    }
+
+    .popup input {
+        width: 98%;
+        height: 36px;
+        background-color: #ECEEFB;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 0px 15px 30px;
+        color: #666666;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .popup textarea {
+        width: 98%;
+        height: 103px;
+        background-color: #ECEEFB;
+        border: none;
+        border-radius: 10px;
+        padding: 30px 0px 30px 30px;
+        color: #666666;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .popup textarea:focus {
+        border-color: white;
+        /* 활성화 시 테두리 색상 변경 */
+        outline: none;
+        /* 기본 윤곽선 제거 */
+    }
+</style>
+
+<body>
+    <div class="create-info-wrap popup">
+        <div class="form">
+            <input class="form-control" id="name" placeholder="이름">
+        </div>
+
+        <div class="form">
+            <input class="form-control" id="profile_img_url" placeholder="이미지 URL">
+        </div>
+
+        <div class="form">
+            <input class="form-control" id="mbti" placeholder="mbti">
+        </div>
+
+        <div class="form">
+            <input class="form-control" id="work_style" placeholder="일하는 스타일">
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea id="tmi" rows="4" cols="50" placeholder="나의 장점 및 소개"></textarea>
+        </div>
+
+        <div class="button-wrap">
+            <div id="saveBtn" type="button">저장하기</div>
+            <div class="cancel-btn" type="button">취소</div>
+        </div>
+    </div>
+</body>
+
+</html>
