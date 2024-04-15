@@ -30,3 +30,18 @@ let users = await getDocs(collection(db, "User"));
 users.forEach((user) => {
     console.log(user.id);
 });
+
+// [CREATE] 등록하기버튼
+$("#createBtn").click(async function () {
+    let name = $("#name").val();
+    let mbti = $("#mbti").val();
+    let work_style = $("#work_style").val();
+    let tmi = $("#tmi").val();
+    let profile_img_url = $("#profile_img_url").val();
+
+    if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '') { //데이터 입력 확인
+        alert("정보를 모두 입력해주세요.")
+    } else {
+        //[이도님 코드 작성 영역 addDoc 함수 사용해주세요]
+    }
+});
