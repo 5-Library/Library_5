@@ -23,11 +23,11 @@
     }
 
     body {
-        /* width: 100%; */
         max-width: 1920px;
         margin: 0 auto;
         font-size: 0px;
         background-color: #ffffff;
+        /* text-align: center; */
     }
 
     p {
@@ -94,6 +94,7 @@
         background: #FFF;
         box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
         margin-bottom: 30px;
+        cursor: pointer;
     }
 
     .profile-area .profile-info-wrap .profile-image {
@@ -124,6 +125,18 @@
     .profile-area .profile-info-wrap .profile-info .profile-image img {
         width: 100%;
         height: auto;
+    }
+
+    /* [추가하기 버튼] 영역 입니다*/
+    .create-botton {
+        display: inline-block;
+        color: #FFF;
+        font-size: 30px;
+        font-weight: 600;
+        padding: 20px 33px;
+        background-color: #566FF5;
+        border-radius: 38px;
+        cursor: pointer;
     }
 </style>
 
@@ -196,8 +209,12 @@
             </div>
         </div>
     </div>
-    <div class="create-botton">
-        라이브러리 추가하기
+    <div class="content-area" style="text-align: center;">
+        <div class="inner">
+            <div class="create-botton">
+            <p>라이브러리 추가하기</p>
+        </div>
+        </div>
     </div>
 
 </body>
