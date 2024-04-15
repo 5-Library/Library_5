@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>라이브러리</title>
+</head>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc  } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    //cdn 토큰값
+    const firebaseConfig = {
+        apiKey: "AIzaSyCJUaBXlLnzg51QLhVPooGw1eNQlkzdi2o",
+        authDomain: "library-e90dd.firebaseapp.com",
+        projectId: "library-e90dd",
+        storageBucket: "library-e90dd.appspot.com",
+        messagingSenderId: "912997144460",
+        appId: "1:912997144460:web:8de2664de91826829068a9",
+        measurementId: "G-5CQMRWTJ3F"
+    };
+
+    // Firebase 앱 초기화
+    const app = initializeApp(firebaseConfig);
+    // Firestore 인스턴스 가져오기
+    const db = getFirestore(app);
+
+    // 'User' 컬렉션의 문서 가져오기
+    let users = await getDocs(collection(db, "User"));
+
+    users.forEach((user) => {
+        console.log(user.id);
+    });
+
+</script>
+
+<body>
+    <div>
+        프로젝트 시작
+    </div>
+</body>
+
+</html>
