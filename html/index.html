@@ -71,6 +71,60 @@
         line-height: 36px;
         color: #424242;
     }
+
+    /* [profile-area] 영역입니다. */
+    .profile-area {
+        /* padding: 66px 0px 146px 0px; */
+    }
+
+    .profile-area .profile-info-wrap {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 38px;
+    }
+
+    .profile-area .profile-info-wrap .profile-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 50px;
+        border-radius: 30px;
+        background: #FFF;
+        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+        margin-bottom: 30px;
+    }
+
+    .profile-area .profile-info-wrap .profile-image {
+        width: 228px;
+        height: 228px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+
+    .profile-area .profile-info-wrap .profile-info .p-work_style {
+        display: inline;
+        font-size: 23px;
+        font-weight: 300;
+        color: #5B6FDF;
+        margin-bottom: 8px;
+    }
+
+    .profile-area .profile-info-wrap .profile-info .p-name {
+        color: #5B6FDF;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .profile-area .profile-info-wrap .profile-info .profile-image img {
+        width: 100%;
+        height: auto;
+    }
 </style>
 
 <body>
@@ -97,9 +151,55 @@
 
     <div class="content-area">
         <div class="inner">
-            <p class="title">우리팀원을 소개합니다</p>
+            <p class="title" style="margin-bottom: 70px;">우리팀원을 소개합니다</p>
+            <div class="profile-area">
+                <div class="inner">
+                    <div class="profile-info-wrap">
+                        <div class="profile-info">
+                            <div class="profile-image">
+                                <img src="https://ifh.cc/g/cSGMPG.jpg" alt="원형 이미지">
+                            </div>
+                            <p class="p-work_style">서폿형</p>
+                            <p class="p-name">김예현</p>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-image">
+                                <img src="https://ifh.cc/g/cSGMPG.jpg" alt="원형 이미지">
+                            </div>
+                            <p class="p-work_style">서폿형</p>
+                            <p class="p-name">김예현</p>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-image">
+                                <img src="https://ifh.cc/g/cSGMPG.jpg" alt="원형 이미지">
+                            </div>
+                            <p class="p-work_style">서폿형</p>
+                            <p class="p-name">김예현</p>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-image">
+                                <img src="https://ifh.cc/g/cSGMPG.jpg" alt="원형 이미지">
+                            </div>
+                            <p class="p-work_style">서폿형</p>
+                            <p class="p-name">김예현</p>
+                        </div>
+                        <div class="profile-info">
+                            <div class="profile-image">
+                                <img src="https://ifh.cc/g/cSGMPG.jpg" alt="원형 이미지">
+                            </div>
+                            <p class="p-work_style">서폿형</p>
+                            <p class="p-name">김예현</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="create-botton">
+        라이브러리 추가하기
+    </div>
+
 </body>
 
 </html>
