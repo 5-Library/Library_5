@@ -30,5 +30,3 @@ let users = await getDocs(collection(db, "User"));
 users.forEach((user) => {
     console.log(user.id);
 });
-
-
