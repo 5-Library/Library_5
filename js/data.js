@@ -78,12 +78,12 @@ $("#deleteBtn").click(async function () {
 });
 
 
-// [READ] - TEMPLATE
+// TEMPLATE
 users.forEach((user) => {
     let row = user.data();
 
     let temp_profile_info_html = `
-            <div class="profile-info" data-id="${user.id}">
+            <div class="profile-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data-blog_url="${row["blog_url"]}" data-tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
                 <div class="profile-image">
                     <img src="${row["profile_img_url"]}" alt="원형 이미지">
                 </div>
@@ -92,28 +92,28 @@ users.forEach((user) => {
             </div>
         `;
     $("#profileList").append(temp_profile_info_html);
-
-    let temp_profile_detail_info_html = `
-            <div class="profile-detail-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data-blog_url="${row["blog_url"]}" data-tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
-                <div class="close-btn"></div>
-                <div class="btn-wrapper">
-                    <div class="update-btn" data-id=""><svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path style="fill : #ffffff" d="m9.134 19.319 11.587-11.588c.171-.171.279-.423.279-.684 0-.229-.083-.466-.28-.662l-3.115-3.104c-.185-.185-.429-.277-.672-.277s-.486.092-.672.277l-11.606 11.566c-.569 1.763-1.555 4.823-1.626 5.081-.02.075-.029.15-.029.224 0 .461.349.848.765.848.511 0 .991-.189 5.369-1.681zm-3.27-3.342 2.137 2.137-3.168 1.046zm.955-1.166 10.114-10.079 2.335 2.327-10.099 10.101z" fill-rule="nonzero"/></svg></div>
-                    <div class="delete-btn" data-id="${user.id}"><svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path style="fill : #ffffff" d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z" fill-rule="nonzero"/></svg></div>
-                </div>
-            </div>
-        `;
-    $("#profileDetailInfo").append(temp_profile_detail_info_html);
 });
 
-// [READ] - profile-info
+
+// [데이터 전달] profile-info -> profile-detail-info
 $(".profile-info").click(function () {
-    // let userId = $(this).attr("data-id");
-    // let name = $(this).attr("data-name");
-    // let mbti = $(this).attr("data-mbti");
-    // let work_style = $(this).attr("data-work_style");
-    // let blog_url = $(this).attr("data-blog_url");
-    // let tmi = $(this).attr("data-tmi");
-    // let profile_img_url = $(this).attr("data-profile_img_url");
+    let userId = $(this).attr("data-id");
+    let name = $(this).attr("data-name");
+    let mbti = $(this).attr("data-mbti");
+    let work_style = $(this).attr("data-work_style");
+    let blog_url = $(this).attr("data-blog_url");
+    let tmi = $(this).attr("data-tmi");
+    let profile_img_url = $(this).attr("data-profile_img_url");
+
+    $(".profile-detail-info").attr("data-id", userId);
+    $(".profile-detail-info").attr("data-name", name);
+    $(".profile-detail-info").attr("data-mbti", mbti);
+    $(".profile-detail-info").attr("data-work_style", work_style);
+    $(".profile-detail-info").attr("data-blog_url", blog_url);
+    $(".profile-detail-info").attr("data-tmi", tmi);
+    $(".profile-detail-info").attr("data-profile_img_url", profile_img_url);
+    $(".update-btn").attr("data-id", userId);
+    $(".delete-btn").attr("data-id", userId);
 
     $(".profile-detail-info").show();
     $(".disabled-cover").show();
@@ -122,6 +122,8 @@ $(".profile-info").click(function () {
     }, 500);
 });
 
+
+//[데이터 전달] update-btn -> updateBtn
 $('.update-btn').click(function () {
     var profileDetailInfo = $(this).closest('.profile-detail-info');
 
@@ -140,6 +142,7 @@ $('.update-btn').click(function () {
     window.location.href = updatePageUrl;
 });
 
+//[닫기버튼]
 $(".close-btn").click(function () {
     $(".profile-detail-info").hide();
     $(".disabled-cover").animate({
@@ -148,7 +151,7 @@ $(".close-btn").click(function () {
     $(".disabled-cover").hide();
 });
 
-//[삭제 버튼] profile-detail-info
+//[데이터 전달] delete-btn -> deleteBtn
 $(".delete-btn").click(function () {
     console.log("test")
     $(".delete-popup").show();

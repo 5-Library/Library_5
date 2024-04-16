@@ -4,7 +4,7 @@ $(document).ready(function () {
         window.location.href = 'createPage.html';
     });
 
-    //[취소 버튼] createPage / updatePage -> mainPage로 이동
+    //[생성, 업데이트 취소 버튼] createPage / updatePage -> mainPage로 이동
     $('.cancel-btn').click(function () {
         window.location.href = 'index.html';
     });
@@ -14,22 +14,4 @@ $(document).ready(function () {
         $(".delete-popup").hide();
         $('.profile-detail-info').show();
     });
-
-    // [프로필 버튼] profile-detail-info 띄우기
-    $(".profile-info").click(function () {
-        $(".disabled-cover").show();
-        $(".disabled-cover").animate({
-            opacity: 0.8
-        }, 500);
-    });
-
-    //[닫기 버튼] profile-detail-info
-    $(".close-btn").click(function () {
-        $(".profile-detail-info").hide();
-        $(".disabled-cover").animate({
-            opacity: 0.0
-        }, 500);
-        $(".disabled-cover").hide();
-    });
-
 });
