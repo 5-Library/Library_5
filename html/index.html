@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -8,132 +9,279 @@
     <script type="module" src="../js/index.js"></script>
     <link rel="stylesheet" href="../css/index.css" type="text/css" />
     <title>라이브러리</title>
-  </head>
+</head>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    //[[사용할 Firestore API 메서드 목록]]
+    //Create = addDoc
+    //Read = getDocs
+    //Update = updateDoc
+    //Delete = deleteDoc
+
+    //cdn 토큰값
+    const firebaseConfig = {
+        apiKey: "AIzaSyCJUaBXlLnzg51QLhVPooGw1eNQlkzdi2o",
+        authDomain: "library-e90dd.firebaseapp.com",
+        projectId: "library-e90dd",
+        storageBucket: "library-e90dd.appspot.com",
+        messagingSenderId: "912997144460",
+        appId: "1:912997144460:web:8de2664de91826829068a9",
+        measurementId: "G-5CQMRWTJ3F"
+    };
+
+    // Firebase 앱 초기화
+    const app = initializeApp(firebaseConfig);
+    // Firestore 인스턴스 가져오기
+    const db = getFirestore(app);
+
+    // 'User' 컬렉션의 문서 가져오기
+    let users = await getDocs(collection(db, "User"));
+
+    // [CREATE] 등록하기버튼
+    $("#createBtn").click(async function () {
+        let name = $("#name").val();
+        let mbti = $("#mbti").val();
+        let work_style = $("#work_style").val();
+        let tmi = $("#tmi").val();
+        let profile_img_url = $("#profile_img_url").val();
+        let blog_url = $("#blog_url").val();
+
+        if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '' || blog_url == '') { //데이터 입력 확인
+            alert("정보를 모두 입력해주세요.")
+        } else {
+            let doc = {
+                'name': name,
+                'profile_img_url': profile_img_url,
+                'mbti': mbti,
+                'work_style': work_style,
+                'blog_url': blog_url,
+                'tmi': tmi
+            };
+            await addDoc(collection(db, "User"), doc);
+            alert("저장 완료!");
+            window.location.href = 'index.html';
+        }
+    });
+
+    // [UPDATE] 등록하기버튼
+    $("#updateBtn").click(async function () {
+
+        let userId = $(this).attr("data-id");
+        let name = $("#update-name").val();
+        let mbti = $("#update-mbti").val();
+        let work_style = $("#update-work_style").val();
+        let blog_url = $("#update-blog_url").val();
+        let tmi = $("#update-tmi").val();
+        let profile_img_url = $("#update-profile_img_url").val();
+
+        let dataToUpdate = {
+            'name': name,
+            'mbti': mbti,
+            'work_style': work_style,
+            'tmi': tmi,
+            'blog_url': blog_url,
+            'profile_img_url': profile_img_url
+        };
+
+        await updateDoc(doc(db, "User", userId), dataToUpdate);
+        alert('수정되었습니다.');
+        window.location.href = 'index.html';
+
+    });
+
+    // [DELETE] - 삭제하기 버튼
+    $("#deleteBtn").click(async function () {
+        let userId = $(this).attr("data-id");
+        await deleteDoc(doc(db, "User", userId));
+        window.location.href = 'index.html';
+    });
 
 
-  <body>
+    // TEMPLATE
+    users.forEach((user) => {
+        let row = user.data();
+
+        let temp_profile_info_html = `
+            <div class="profile-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data-blog_url="${row["blog_url"]}" data-tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
+                <div class="profile-image">
+                    <img src="${row["profile_img_url"]}" alt="원형 이미지">
+                </div>
+                <p class="p-work_style">${row["work_style"]}</p>
+                <p class="p-name">${row["name"]}</p>
+            </div>
+        `;
+        $("#profileList").append(temp_profile_info_html);
+    });
+
+
+    // [데이터 전달] profile-info -> profile-detail-info
+    $(".profile-info").click(function () {
+        let userId = $(this).attr("data-id");
+        let name = $(this).attr("data-name");
+        let mbti = $(this).attr("data-mbti");
+        let work_style = $(this).attr("data-work_style");
+        let blog_url = $(this).attr("data-blog_url");
+        let tmi = $(this).attr("data-tmi");
+        let profile_img_url = $(this).attr("data-profile_img_url");
+
+        $(".profile-detail-info").attr("data-id", userId);
+        $(".profile-detail-info").attr("data-name", name);
+        $(".profile-detail-info").attr("data-mbti", mbti);
+        $(".profile-detail-info").attr("data-work_style", work_style);
+        $(".profile-detail-info").attr("data-blog_url", blog_url);
+        $(".profile-detail-info").attr("data-tmi", tmi);
+        $(".profile-detail-info").attr("data-profile_img_url", profile_img_url);
+        $(".update-btn").attr("data-id", userId);
+        $(".delete-btn").attr("data-id", userId);
+
+        $(".profile-detail-info").show();
+        $(".disabled-cover").show();
+        $(".disabled-cover").animate({
+            opacity: 0.8
+        }, 500);
+    });
+
+
+    //[데이터 전달] update-btn -> updateBtn
+    $('.update-btn').click(function () {
+        var profileDetailInfo = $(this).closest('.profile-detail-info');
+
+        let userId = profileDetailInfo.attr("data-id");
+        let name = profileDetailInfo.attr("data-name");
+        let mbti = profileDetailInfo.attr("data-mbti");
+        let work_style = profileDetailInfo.attr("data-work_style");
+        let blog_url = profileDetailInfo.attr("data-blog_url");
+        let tmi = profileDetailInfo.attr("data-tmi");
+        let profile_img_url = profileDetailInfo.attr("data-profile_img_url");
+
+        // URL 파라미터로 데이터 추가
+        var updatePageUrl = 'updatePage.html?userId=' + encodeURIComponent(userId) + '&name=' + encodeURIComponent(name) + '&mbti=' + encodeURIComponent(mbti) + '&work_style=' + encodeURIComponent(work_style) + '&blog_url=' + encodeURIComponent(blog_url) + '&tmi=' + encodeURIComponent(tmi) + '&profile_img_url=' + encodeURIComponent(profile_img_url);
+
+        // 페이지 이동
+        window.location.href = updatePageUrl;
+    });
+
+    //[닫기버튼]
+    $(".close-btn").click(function () {
+        $(".profile-detail-info").hide();
+        $(".disabled-cover").animate({
+            opacity: 0.0
+        }, 500);
+        $(".disabled-cover").hide();
+    });
+
+    //[데이터 전달] delete-btn -> deleteBtn
+    $(".delete-btn").click(function () {
+        $(".delete-popup").show();
+        $('.profile-detail-info').hide();
+        let userId = $(this).attr("data-id");
+        $("#deleteBtn").attr("data-id", userId)
+    });
+</script>
+
+<body>
     <div id="profileDetailInfo"></div>
 
     <div class="delete-popup" width="958px" height="1123px">
-      <p class="warning-text">정보를 삭제하시겠습니까?</p>
-      <div class="button-wrap">
-        <div id="deleteBtn" data-id="">삭제하기</div>
-      </div>
+        <p class="warning-text">정보를 삭제하시겠습니까?</p>
+        <div class="button-wrap">
+            <div id="deleteBtn" data-id="">삭제하기</div>
+        </div>
     </div>
 
-    <div
-      class="profile-detail-info"
-      data-id=""
-      data-name=""
-      data-mbti=""
-      data-work_style=""
-      data-blog_url=""
-      data-tmi=""
-      data-profile_img_url=""
-    >
-      <div class="readBtn">
-        <div class="profile-img">
-          <img src="https://ifh.cc/g/FOP2Tb.jpg" alt="원형 이미지" />
-        </div>
-        <div class="text-wrap">
-          <p class="p-d-i-name">이준열</p>
-        </div>
-        <div class="text-wrap">
-          <p class="p-d-i-work_style">서폿형</p>
-          <p class="p-d-i-mbti">ESTP</p>
+    <div class="profile-detail-info" data-id="" data-name="" data-mbti="" data-work_style="" data-blog_url=""
+        data-tmi="" data-profile_img_url="">
+        <div class="readBtn">
+            <div class="profile-img">
+                <img src="https://ifh.cc/g/FOP2Tb.jpg" alt="원형 이미지" />
+            </div>
+            <div class="text-wrap">
+                <p class="p-d-i-name">이준열</p>
+            </div>
+            <div class="text-wrap">
+                <p class="p-d-i-work_style">서폿형</p>
+                <p class="p-d-i-mbti">ESTP</p>
+            </div>
+
+            <div class="blog_url-wrap">
+                <p class="p-d-i-blog_url">www.naver.com</p>
+            </div>
+
+            <div class="tmi-wrap">
+                <p class="p-d-i-tmi">열심히 배우겠습니다</p>
+            </div>
         </div>
 
-        <div class="blog_url-wrap">
-          <p class="p-d-i-blog_url">www.naver.com</p>
+        <div class="close-btn"></div>
+        <div class="btn-wrapper">
+            <div class="update-btn" data-id="">
+                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path style="fill: #ffffff"
+                        d="m9.134 19.319 11.587-11.588c.171-.171.279-.423.279-.684 0-.229-.083-.466-.28-.662l-3.115-3.104c-.185-.185-.429-.277-.672-.277s-.486.092-.672.277l-11.606 11.566c-.569 1.763-1.555 4.823-1.626 5.081-.02.075-.029.15-.029.224 0 .461.349.848.765.848.511 0 .991-.189 5.369-1.681zm-3.27-3.342 2.137 2.137-3.168 1.046zm.955-1.166 10.114-10.079 2.335 2.327-10.099 10.101z"
+                        fill-rule="nonzero" />
+                </svg>
+            </div>
+            <div class="delete-btn" data-id="">
+                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path style="fill: #ffffff"
+                        d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
+                        fill-rule="nonzero" />
+                </svg>
+            </div>
         </div>
-
-        <div class="tmi-wrap">
-          <p class="p-d-i-tmi">열심히 배우겠습니다</p>
-        </div>
-      </div>
-
-      <div class="close-btn"></div>
-      <div class="btn-wrapper">
-        <div class="update-btn" data-id="">
-          <svg
-            clip-rule="evenodd"
-            fill-rule="evenodd"
-            stroke-linejoin="round"
-            stroke-miterlimit="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              style="fill: #ffffff"
-              d="m9.134 19.319 11.587-11.588c.171-.171.279-.423.279-.684 0-.229-.083-.466-.28-.662l-3.115-3.104c-.185-.185-.429-.277-.672-.277s-.486.092-.672.277l-11.606 11.566c-.569 1.763-1.555 4.823-1.626 5.081-.02.075-.029.15-.029.224 0 .461.349.848.765.848.511 0 .991-.189 5.369-1.681zm-3.27-3.342 2.137 2.137-3.168 1.046zm.955-1.166 10.114-10.079 2.335 2.327-10.099 10.101z"
-              fill-rule="nonzero"
-            />
-          </svg>
-        </div>
-        <div class="delete-btn" data-id="">
-          <svg
-            clip-rule="evenodd"
-            fill-rule="evenodd"
-            stroke-linejoin="round"
-            stroke-miterlimit="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              style="fill: #ffffff"
-              d="m4.015 5.494h-.253c-.413 0-.747-.335-.747-.747s.334-.747.747-.747h5.253v-1c0-.535.474-1 1-1h4c.526 0 1 .465 1 1v1h5.254c.412 0 .746.335.746.747s-.334.747-.746.747h-.254v15.435c0 .591-.448 1.071-1 1.071-2.873 0-11.127 0-14 0-.552 0-1-.48-1-1.071zm14.5 0h-13v15.006h13zm-4.25 2.506c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm-4.5 0c-.414 0-.75.336-.75.75v8.5c0 .414.336.75.75.75s.75-.336.75-.75v-8.5c0-.414-.336-.75-.75-.75zm3.75-4v-.5h-3v.5z"
-              fill-rule="nonzero"
-            />
-          </svg>
-        </div>
-      </div>
     </div>
 
     <div class="disabled-cover"></div>
 
     <div class="header">
-      <img src="../img/00_header.png" />
+        <img src="../img/00_header.png" />
     </div>
 
     <div class="content-area">
-      <div class="inner">
-        <p class="title">우리팀의 라이브러리</p>
-        <p class="sub-title">
-          우리는 취미도, 개발 지식의 깊이도, 살아온 인생도 모두 달라요.<br />
-          서로에 대해서 잘 모르는 5인이 모여 프로젝트를 진행하려 하니,
-          어색하기도 하고 눈치보기 바빴어요.<br />
-          그래서 서로를 조금 더 알아가고자 팀원들의 취미, TMI를 저장하고 있는
-          라이브러리를 만들게 되었습니다.
-        </p>
-      </div>
-    </div>
-
-    <div class="content-area">
-      <div class="inner">
-        <p class="title">우리팀은 COMFORT - ZONE</p>
-        <p class="sub-title">
-          우리팀에 있을 때 만큼은 서로를 존중하고 편안한 마음을 가질 수 있는
-          COMFORT - ZONE을 지지합니다.
-        </p>
-      </div>
-    </div>
-
-    <div class="content-area">
-      <div class="inner">
-        <p class="title" style="margin-bottom: 70px">우리팀원을 소개합니다</p>
-        <div class="profile-area">
-          <div class="inner">
-            <div class="profile-info-wrap" id="profileList"></div>
-          </div>
+        <div class="inner">
+            <p class="title">우리팀의 라이브러리</p>
+            <p class="sub-title">
+                우리는 취미도, 개발 지식의 깊이도, 살아온 인생도 모두 달라요.<br />
+                서로에 대해서 잘 모르는 5인이 모여 프로젝트를 진행하려 하니,
+                어색하기도 하고 눈치보기 바빴어요.<br />
+                그래서 서로를 조금 더 알아가고자 팀원들의 취미, TMI를 저장하고 있는
+                라이브러리를 만들게 되었습니다.
+            </p>
         </div>
-      </div>
+    </div>
+
+    <div class="content-area">
+        <div class="inner">
+            <p class="title">우리팀은 COMFORT - ZONE</p>
+            <p class="sub-title">
+                우리팀에 있을 때 만큼은 서로를 존중하고 편안한 마음을 가질 수 있는
+                COMFORT - ZONE을 지지합니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="inner">
+            <p class="title" style="margin-bottom: 70px">우리팀원을 소개합니다</p>
+            <div class="profile-area">
+                <div class="inner">
+                    <div class="profile-info-wrap" id="profileList"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="content-area" style="text-align: center">
-      <div class="inner">
-        <div class="create-btn">
-          <p>라이브러리 추가하기</p>
+        <div class="inner">
+            <div class="create-btn">
+                <p>라이브러리 추가하기</p>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
