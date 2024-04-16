@@ -9,12 +9,18 @@ $(document).ready(function () {
         window.location.href = 'index.html';
     });
 
+    //[삭제하기 취소 버튼]
+    $('.cancel-d-btn').click(function () {
+        $(".delete-popup").hide();
+        $('.profile-detail-info').show();
+    });
+
+    // [프로필 버튼] profile-detail-info 띄우기
     $(".profile-info").click(function () {
-        console.log("test")
         $(".disabled-cover").show();
         $(".disabled-cover").animate({
             opacity: 0.8
-        }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경
+        }, 500);
     });
 
     //[닫기 버튼] profile-detail-info

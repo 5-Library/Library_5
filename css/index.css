@@ -6,7 +6,6 @@
 
 svg {
     width: 24px;
-    /* margin: 11.5px; */
 }
 
 body {
@@ -14,7 +13,6 @@ body {
     margin: 0 auto;
     font-size: 0px;
     background-color: #ffffff;
-    /* text-align: center; */
 }
 
 p {
@@ -144,8 +142,10 @@ img {
     justify-content: center;
     gap: 27px;
 }
-.btn-wrapper .update-btn, .delete-btn {
-    display: flex; 
+
+.btn-wrapper .update-btn,
+.delete-btn {
+    display: flex;
     border-radius: 50px;
     cursor: pointer;
     width: 51px;
@@ -157,8 +157,58 @@ img {
 .btn-wrapper .update-btn {
     background-color: #566FF5;
 }
+
 .btn-wrapper .delete-btn {
     background-color: #B63700;
+}
+
+/* ///삭제하기 버튼 팝업 영역입니다./// */
+.delete-popup {
+    display: none;
+    max-width: 800px;
+    width: 100%;
+    padding: 80px 70px 60px 70px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 40px;
+    text-align: center;
+    z-index: 5;
+}
+
+.delete-popup .warning-text {
+    color: #5B6FDF;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 60px;
+}
+
+.delete-popup .button-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-popup .button-wrap #deleteBtn {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px 26px;
+    background-color: #5B6FDF;
+    color: #ffffff;
+    border-radius: 38px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.delete-popup .button-wrap .cancel-d-btn {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 10px 26px;
+    color: #ffffff;
+    background-color: #CBCBCB;
+    border-radius: 38px;
+    cursor: pointer;
 }
 
 /* [profile-detail-info] 영역입니다 */
