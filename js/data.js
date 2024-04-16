@@ -54,7 +54,7 @@ $("#updateBtn").click(async function () {
     let work_style = $("#update-work_style").val();
     let blog_url = $("#update-blog_url").val();
     let tmi = $("#update-tmi").val();
-    let profile_img_url = $("#profile_img_url").val();
+    // let profile_img_url = $("#profile_img_url").val();
 
     let dataToUpdate = {
         'name': name,
@@ -62,18 +62,19 @@ $("#updateBtn").click(async function () {
         'work_style': work_style,
         'tmi': tmi,
         'blog_url': blog_url,
-        'profile_img_url': profile_img_url,
+        // 'profile_img_url': profile_img_url,
     };
-
     //[나은님 코드 작성 영역 updateDoc 함수 사용해주세요]
+    await updateDoc(doc(db, "User", userId), dataToUpdate);
+    alert('수정되었습니다.');
+    window.location.href = 'index.html';
 
 });
 
 // [DELETE] - 삭제하기 버튼
 $("#deleteBtn").click(async function () {
     let userId = $(this).attr("data-id");
-
-    //[나은님 코드 작성 영역 updateDoc 함수 사용해주세요]
+    await deleteDoc(doc(db, "User", userId));
     window.location.href = 'index.html';
 });
 
