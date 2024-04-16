@@ -50,3 +50,22 @@ $("#createBtn").click(async function () {
 $("#updateBtn").click(async function () {
 
 });
+
+
+
+// [TEMPLATE]
+users.forEach((user) => {
+    let row = user.data();
+
+    console.log(row["profile_img_url"])
+    let temp_profile_info_html = `
+            <div class="profile-info" data-id="${user.id}">
+                <div class="profile-image">
+                    <img src="${row["profile_img_url"]}" alt="원형 이미지">
+                </div>
+                <p class="p-work_style">${row["work_style"]}</p>
+                <p class="p-name">${row["name"]}</p>
+            </div>
+        `;
+    $("#profileList").append(temp_profile_info_html);
+});
