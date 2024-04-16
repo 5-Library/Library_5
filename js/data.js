@@ -48,7 +48,31 @@ $("#createBtn").click(async function () {
 
 // [UPDATE] 등록하기버튼
 $("#updateBtn").click(async function () {
+    let userId = $(this).attr("data-id");
+    let name = $("#name").val();
+    let mbti = $("#mbti").val();
+    let work_style = $("#work_style").val();
+    let tmi = $("#tmi").val();
+    let profile_img_url = $("#profile_img_url").val();
 
+    let dataToUpdate = {
+        'name': name,
+        'mbti': mbti,
+        'work_style': work_style,
+        'tmi': tmi,
+        'profile_img_url': profile_img_url,
+    };
+
+    //[나은님 코드 작성 영역 updateDoc 함수 사용해주세요]
+
+});
+
+// [DELETE] - 삭제하기 버튼
+$("#deleteBtn").click(async function () {
+    let userId = $(this).attr("data-id");
+
+    //[나은님 코드 작성 영역 updateDoc 함수 사용해주세요]
+    window.location.href = 'index.html';
 });
 
 
