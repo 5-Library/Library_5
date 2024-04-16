@@ -147,7 +147,7 @@ $('.update-btn').click(function () {
 
 //[닫기버튼]
 $(".close-btn").click(function () {
-    $(".profile-detail-info").hide();
+    $(".profile-detail-info-wrap").hide();
     $(".disabled-cover").animate({
         opacity: 0.0
     }, 500);
@@ -158,7 +158,7 @@ $(".close-btn").click(function () {
 $(".delete-btn").click(function () {
     console.log("test")
     $(".delete-popup").show();
-    $('.profile-detail-info').hide();
+    $('.profile-detail-info-wrap').hide();
     let userId = $(this).attr("data-id");
     $("#deleteBtn").attr("data-id", userId)
 });

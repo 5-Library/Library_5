@@ -124,7 +124,8 @@ $(".profile-info").click(function () {
     $(".update-btn").attr("data-id", userId);
     $(".delete-btn").attr("data-id", userId);
 
-    $(".profile-detail-info").show();
+    console.log("test")
+    $(".profile-detail-info-wrap").show();
     $(".disabled-cover").show();
     $(".disabled-cover").animate({
         opacity: 0.8
@@ -153,7 +154,7 @@ $('.update-btn').click(function () {
 
 //[닫기버튼]
 $(".close-btn").click(function () {
-    $(".profile-detail-info").hide();
+    $(".profile-detail-info-wrap").hide();
     $(".disabled-cover").animate({
         opacity: 0.0
     }, 500);
@@ -163,7 +164,7 @@ $(".close-btn").click(function () {
 //[데이터 전달] delete-btn -> deleteBtn
 $(".delete-btn").click(function () {
     $(".delete-popup").show();
-    $('.profile-detail-info').hide();
+    $('.profile-detail-info-wrap').hide();
     let userId = $(this).attr("data-id");
     $("#deleteBtn").attr("data-id", userId)
 });

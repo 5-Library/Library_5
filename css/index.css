@@ -213,8 +213,10 @@ img {
 }
 
 /* [profile-detail-info] 영역입니다 */
-.profile-detail-info {
+.profile-detail-info-wrap {
     display: none;
+}
+.profile-detail-info {
     max-width: 958px;
     width: 100%;
     /*padding: 100px 70px 60px 70px;*/

@@ -12,6 +12,6 @@ $(document).ready(function () {
     //[삭제하기 취소 버튼]
     $('.cancel-d-btn').click(function () {
         $(".delete-popup").hide();
-        $('.profile-detail-info').show();
+        $('.profile-detail-info-wrap').show();
     });
 });
