@@ -11,6 +11,31 @@
     <title>라이브러리 수정하기</title>
 </head>
 
+<script>
+    $(document).ready(function() {
+    // URL에서 파라미터 가져오기
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    var userID = getParameterByName('userId');
+    console.log(userID)
+
+    // 입력 필드에 값 설정
+    $("#updateBtn").attr("data-id", userID);
+    $("#update-name").val(getParameterByName('name'));
+    $("#update-mbti").val(getParameterByName('mbti'));
+    $("#update-work_style").val(getParameterByName('work_style'));
+    $("#update-blog_url").val(getParameterByName('blog_url'));
+    $("#update-tmi").val(getParameterByName('tmi'));
+    $("#update-profile_img_url").val(getParameterByName('profile_img_url'));
+    });
+</script>
+
 
 <body>
     <div class="inner">
@@ -20,27 +45,31 @@
 
     <div class="update-info-wrap popup">
         <div class="form">
-            <input class="form-control" data-id='' id="name" placeholder="이름">
+            <input class="form-control" id="update-name" placeholder="이름">
         </div>
 
         <div class="form">
-            <input class="form-control" data-id='' id="profile_img_url" placeholder="이미지 URL">
+            <input class="form-control" id="update-profile_img_url" placeholder="이미지 URL">
         </div>
 
         <div class="form">
-            <input class="form-control" data-id='' id="mbti" placeholder="mbti">
+            <input class="form-control" id="update-mbti" placeholder="mbti">
         </div>
 
         <div class="form">
-            <input class="form-control" data-id='' id="work_style" placeholder="일하는 스타일">
+            <input class="form-control" id="update-work_style" placeholder="일하는 스타일">
+        </div>
+
+        <div class="form">
+            <input class="form-control" id="update-blog_url" placeholder="블로그 주소">
         </div>
 
         <div class="form-floating mb-3">
-            <textarea id="tmi" rows="4" data-id='' cols="50" placeholder="나의 장점 및 소개"></textarea>
+            <textarea id="update-tmi" rows="4" cols="50" placeholder="나의 장점 및 소개"></textarea>
         </div>
 
         <div class="button-wrap">
-            <div id="updateBtn" type="button">수정하기</div>
+            <div id="updateBtn" datatype="button" data-id=''>수정하기</div>
             <div class="cancel-btn" type="button">취소</div>
         </div>
     </div>
