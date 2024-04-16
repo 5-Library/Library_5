@@ -76,12 +76,12 @@ $("#deleteBtn").click(async function () {
 });
 
 
-// [READE] - TEMPLATE
+// [READ] - TEMPLATE
 users.forEach((user) => {
     let row = user.data();
 
     let temp_profile_info_html = `
-            <div class="profile-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data_blog_url="${row["blog_url"]}" data_tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
+            <div class="profile-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data-blog_url="${row["blog_url"]}" data-tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
                 <div class="profile-image">
                     <img src="${row["profile_img_url"]}" alt="원형 이미지">
                 </div>
@@ -92,8 +92,16 @@ users.forEach((user) => {
     $("#profileList").append(temp_profile_info_html);
 });
 
-
+// [READ] - profile-info
 $(".profile-info").click(function () {
+    let userId = $(this).attr("data-id");
+    let name = $(this).attr("data-name");
+    let mbti = $(this).attr("data-mbti");
+    let work_style = $(this).attr("data-work_style");
+    let blog_url = $(this).attr("data-blog_url");
+    let tmi = $(this).attr("data-tmi");
+    let profile_img_url = $(this).attr("data-profile_img_url");
+
     $(".profile-detail-info").show();
     $(".disabled-cover").show();
     $(".disabled-cover").animate({

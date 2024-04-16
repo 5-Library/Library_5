@@ -5,7 +5,33 @@ $(document).ready(function () {
     });
 
     //[테스트용] mainPage -> createPage로 이동
-    $('.update-btn').click(function () {
+    $('.profile-info').click(function () {
+        let userId = $(this).attr("data-id");
+        let name = $(this).attr("data-name");
+        let mbti = $(this).attr("data-mbti");
+        let work_style = $(this).attr("work_style");
+        let blog_url = $(this).attr("blog_url");
+        let tmi = $(this).attr("tmi");
+        let profile_img_url = $(this).attr("profile_img_url");
+        
+        console.log(name)
+        console.log(mbti)
+        console.log(work_style)
+        console.log(blog_url)
+
+
+        $("#update_profile_img_url").val(imgURL);
+        $("#update_goal").val(goalValue);
+        $("#update_name").val(nameValue);
+        $("#updateDescription").val(descriptionValue);
+
+
+        $(".update-popup").show();
+        $(".disabled-cover").show();
+        $(".disabled-cover").animate({
+            opacity: 0.8
+        }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경 
+        $("#updateBtn").attr("data-id", userId)   
         window.location.href = 'updatePage.html';
     });
 

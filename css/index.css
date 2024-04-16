@@ -5,8 +5,8 @@
 }
 
 svg {
-    width: 17px;
-    margin: 11.5px;
+    width: 24px;
+    /* margin: 11.5px; */
 }
 
 body {
@@ -138,16 +138,27 @@ img {
     cursor: pointer;
 }
 
-/* [추가하기 버튼] 영역 입니다*/
-.update-btn {
-    display: inline-block;
-    color: #FFF;
-    font-size: 30px;
-    font-weight: 600;
-    padding: 20px 33px;
-    background-color: #566FF5;
-    border-radius: 38px;
+/* [업데이트 / 삭제 버튼] 영역 입니다*/
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+}
+.btn-wrapper .update-btn, .delete-btn {
+    display: flex; 
+    border-radius: 50px;
     cursor: pointer;
+    width: 51px;
+    height: 51px;
+    align-content: center;
+    justify-content: center;
+}
+
+.btn-wrapper .update-btn {
+    background-color: #566FF5;
+}
+.btn-wrapper .delete-btn {
+    background-color: #B63700;
 }
 
 /* [profile-detail-info] 영역입니다 */
