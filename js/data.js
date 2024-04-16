@@ -76,12 +76,10 @@ $("#deleteBtn").click(async function () {
 });
 
 
-
 // [TEMPLATE]
 users.forEach((user) => {
     let row = user.data();
 
-    console.log(row["profile_img_url"])
     let temp_profile_info_html = `
             <div class="profile-info" data-id="${user.id}">
                 <div class="profile-image">
@@ -92,4 +90,13 @@ users.forEach((user) => {
             </div>
         `;
     $("#profileList").append(temp_profile_info_html);
+});
+
+
+$(".profile-info").click(function () {
+    console.log("test")
+    $(".disabled-cover").show();
+    $(".disabled-cover").animate({
+        opacity: 0.8
+    }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경
 });

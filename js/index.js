@@ -13,4 +13,13 @@ $(document).ready(function () {
     $('.cancel-btn').click(function () {
         window.location.href = 'index.html';
     });
+
+    $(".profile-info").click(function () {
+        console.log("test")
+        $(".disabled-cover").show();
+        $(".disabled-cover").animate({
+            opacity: 0.8
+        }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경
+    });
+
 });
