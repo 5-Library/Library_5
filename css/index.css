@@ -141,6 +141,7 @@ img {
     display: flex;
     justify-content: center;
     gap: 27px;
+    margin-bottom: 101px;
 }
 
 .btn-wrapper .update-btn,
@@ -216,7 +217,7 @@ img {
     display: none;
     max-width: 958px;
     width: 100%;
-    padding: 100px 70px 60px 70px;
+    /*padding: 100px 70px 60px 70px;*/
     background-color: #ffffff;
     position: fixed;
     top: 50%;
@@ -226,6 +227,11 @@ img {
     box-shadow: 0px 4px 23px 0px rgba(0, 0, 0, 0.25);
     text-align: center;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    
 }
 
 .profile-detail-info .close-btn {
@@ -258,4 +264,75 @@ img {
 .profile-detail-info .close-btn::after {
     transform: translate(-50%, -50%) rotate(-45deg);
     /* 두 번째 선 */
+}
+
+.profile-detail-info .profile-img {
+    width : 318px;
+    height: 318px;
+    border-radius: 50%;
+    margin-bottom: 54px; /* 이미지 아래에 간격 추가 */
+    overflow: hidden;
+    text-align: center;
+    margin-top: 136px;
+}
+
+.profile-detail-info .text-wrap {
+    display: flex;
+    gap : 18px;
+    margin-bottom: 23px;
+}
+
+.profile-detail-info .text-wrap .p-d-i-name {
+    font-size: 30px;
+    font-weight: 600;
+    color : #5B6FDF;
+    margin-bottom: 24px;
+}
+
+.profile-detail-info .text-wrap .p-d-i-work_style, .p-d-i-mbti {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 18px;
+    background-color: #5B6FDF;
+    color: white;
+    border-radius: 20px;
+}
+
+.profile-detail-info .blog_url-wrap {
+    display: flex;
+    gap : 18px;
+    margin-bottom: 80px;
+}
+
+.profile-detail-info .p-d-i-blog_url {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: #303864;
+    border-radius: 20px;
+    padding : 10px 22px
+}
+
+.profile-detail-info .blog_url-wrap {
+    display: flex;
+    gap : 18px;
+    margin-bottom: 80px;
+}
+
+.profile-detail-info .tmi-wrap {
+    width: 705px;
+    height: 144px;
+    display: flex;
+    gap: 0px;
+    background-color: white;
+    margin-bottom: 80px;
+}
+
+.profile-detail-info .p-d-i-tmi {
+    color :black;
+    font-size: 24px;
+    font-family: Pretendard;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: left;
 }
