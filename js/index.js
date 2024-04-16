@@ -4,10 +4,6 @@ $(document).ready(function () {
         window.location.href = 'createPage.html';
     });
 
-    $('.update-btn').click(function () {
-        window.location.href = 'updatePage.html';
-    });
-
     //[취소 버튼] createPage / updatePage -> mainPage로 이동
     $('.cancel-btn').click(function () {
         window.location.href = 'index.html';
