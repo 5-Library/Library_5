@@ -1,0 +1,87 @@
+body {
+    max-width: 1920px;
+    margin: 0 auto;
+    font-size: 0px;
+    background-color: #ffffff;
+}
+
+.button-wrap #createBtn {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 26px 11px 26px;
+    background-color: #566FF5;
+    color: #ffffff;
+    border-radius: 38px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 26px 11px 26px;
+    color: #ffffff;
+    background-color: #CBCBCB;
+    border-radius: 38px;
+    cursor: pointer;
+}
+
+.button-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.record {
+    max-width: 1060px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content-area {
+    font-size: 40px;
+    font-weight: 600;
+    color: #566FF5;
+    margin-bottom: 80px;
+}
+
+.create-info-wrap {
+    max-width: 1000px;
+    width: 100%;
+    padding: 125px 75px;
+    background: #FFF;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+    z-index: 5;
+}
+
+.popup input {
+    width: 98%;
+    height: 36px;
+    background-color: #ECEEFB;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 0px 15px 30px;
+    color: #666666;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.popup textarea {
+    width: 98%;
+    height: 103px;
+    background-color: #ECEEFB;
+    border: none;
+    border-radius: 10px;
+    padding: 30px 0px 30px 30px;
+    color: #666666;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.popup textarea:focus {
+    border-color: white;
+    outline: none;
+}
