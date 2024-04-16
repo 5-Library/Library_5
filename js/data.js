@@ -27,10 +27,6 @@ const db = getFirestore(app);
 // 'User' 컬렉션의 문서 가져오기
 let users = await getDocs(collection(db, "User"));
 
-users.forEach((user) => {
-    console.log(user.id);
-});
-
 // [CREATE] 등록하기버튼
 $("#createBtn").click(async function () {
     let name = $("#name").val();
@@ -54,7 +50,7 @@ $("#createBtn").click(async function () {
         await addDoc(collection(db, "User"), doc);
         alert("저장 완료!");
         window.location.href = 'index.html';
-        }
+    }
 });
 
 // [UPDATE] 등록하기버튼
@@ -166,7 +162,6 @@ $(".close-btn").click(function () {
 
 //[데이터 전달] delete-btn -> deleteBtn
 $(".delete-btn").click(function () {
-    console.log("test")
     $(".delete-popup").show();
     $('.profile-detail-info').hide();
     let userId = $(this).attr("data-id");
