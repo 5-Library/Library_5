@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="module" src="../js/data.js"></script>
     <script type="module" src="../js/index.js"></script>
-    <title>라이브러리 추가하기</title>
+    <title>라이브러리 수정하기</title>
 </head>
 
 <style>
@@ -63,7 +63,7 @@
         margin-bottom: 80px;
     }
 
-    .create-info-wrap {
+    .update-info-wrap {
         max-width: 1000px;
         width: 100%;
         padding: 125px 75px;
@@ -103,40 +103,42 @@
         outline: none;
         /* 기본 윤곽선 제거 */
     }
+
+    /* 기본 윤곽선 제거 */
 </style>
 
 <body>
     <div class="inner">
-        <div class="content-area">
-            라이브러리 생성하기
+    <div class="content-area">
+        라이브러리 수정하기
+    </div>
+
+    <div class="update-info-wrap popup">
+        <div class="form">
+            <input class="form-control" data-id='' id="name" placeholder="이름">
         </div>
 
-        <div class="create-info-wrap popup">
-            <div class="form">
-                <input class="form-control" id="name" placeholder="이름">
-            </div>
-
-            <div class="form">
-                <input class="form-control" id="profile_img_url" placeholder="이미지 URL">
-            </div>
-
-            <div class="form">
-                <input class="form-control" id="mbti" placeholder="mbti">
-            </div>
-
-            <div class="form">
-                <input class="form-control" id="work_style" placeholder="일하는 스타일">
-            </div>
-
-            <div class="form-floating mb-3">
-                <textarea id="tmi" rows="4" cols="50" placeholder="나의 장점 및 소개"></textarea>
-            </div>
-
-            <div class="button-wrap">
-                <div id="createBtn" type="button">저장하기</div>
-                <div class="cancel-btn" type="button">취소</div>
-            </div>
+        <div class="form">
+            <input class="form-control" data-id='' id="profile_img_url" placeholder="이미지 URL">
         </div>
+
+        <div class="form">
+            <input class="form-control" data-id='' id="mbti" placeholder="mbti">
+        </div>
+
+        <div class="form">
+            <input class="form-control" data-id='' id="work_style" placeholder="일하는 스타일">
+        </div>
+
+        <div class="form-floating mb-3">
+            <textarea id="tmi" rows="4" data-id='' cols="50" placeholder="나의 장점 및 소개"></textarea>
+        </div>
+
+        <div class="button-wrap">
+            <div id="updateBtn" type="button">수정하기</div>
+            <div class="cancel-btn" type="button">취소</div>
+        </div>
+    </div>
     </div>
 </body>
 
