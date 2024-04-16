@@ -11,15 +11,88 @@
     <title>라이브러리 추가하기</title>
 </head>
 
+<script>
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyAlqS634N8zl0a3_WczkvkM4Q5P3S-uTdc",
+        authDomain: "sparta-e9438.firebaseapp.com",
+        projectId: "sparta-e9438",
+        storageBucket: "sparta-e9438.appspot.com",
+        messagingSenderId: "495817664263",
+        appId: "1:495817664263:web:6ac892e9f415742b9407a2",
+        measurementId: "G-ZYG0WXBV0L"
+    };
+
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    $("#postingbtn").click(async function () {
+        let name = $('#name').val();
+        let profile_img_url = $('profile_img_url').val();
+        let mbti = $('#mbti').val();
+        let work_style = $('#work_style').val();
+        let blog_url = $('#blog_url').val();;
+        let tmi = $('tmi').val();
+        
+
+        let doc = {
+            'image': image,
+            'profile_img_url': profile_img_url,
+            'mbti': mbti,
+            'work_style': work_style,
+            'blog_url' : blog_url,
+            'tmi': tmi,
+        };
+        await addDoc(collection(db, "creating"), doc);
+        alert('저장 완료!');
+        window.location.reload();
+    })
+
+    let docs = await getDocs(collection(db, "creating"));
+    docs.forEach((doc) => {
+        let row = doc.data();
+
+        let name = row['name'];
+        let profile_img_url = row['profile_img_url'];
+        let mbti = row['mbti'];
+        let work_style = row['work_style'];
+        let blog_url = row['blog_url'];
+        let tmi = row['tmi'];
+
+        let temp_html = `            
+            <div class="col">
+                    <img src="${profile_img_url}"
+                        class="card-img-top" alt="...">
+                    <img src="${blog_url}"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <p class="card-text">${mbti}</p>
+                        <p class="card-text">${work_style}</p>
+                        <p class="card-text">${tmi}</p>
+                    </div>
+            </div>`;
+    });
+</script>
+
 <body>
     <div class="record">
         <div class="content-area">
-            라이브러리 저장하기
+            라이브러리 추가하기
         </div>
 
         <div class="create-info-wrap popup">
             <div class="form">
-                <input class="form-control"  id="name" placeholder="이름">
+                <input class="form-control" id="name" placeholder="이름">
             </div>
 
             <div class="form">
@@ -27,11 +100,24 @@
             </div>
 
             <div class="form">
-                <input class="form-control"  id="mbti" placeholder="mbti">
+                <input class="form-control" id="mbti" placeholder="mbti">
+            </div>
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">일하는 스타일</label>
+                <select class="form-select" id="work_style">
+                    <option selected>일하는 스타일 선택</option>
+                    <option value="리더형">리더형</option>
+                    <option value="서폿형">서폿형</option>
+                    <option value="숨은 다크호스형">숨은 다크호스형</option>
+                    <option value="탱커형">탱커형</option>
+                    <option value="노력형">노력형</option>
+                    <option value="딜러형">딜러형</option>
+                </select>
             </div>
 
             <div class="form">
-                <input class="form-control" id="work_style" placeholder="일하는 스타일">
+                <input class="form-control" id="blog_url" placeholder="블로그 주소">
             </div>
 
             <div class="form-floating mb-3">
