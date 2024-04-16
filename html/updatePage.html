@@ -23,7 +23,6 @@
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
     var userID = getParameterByName('userId');
-    console.log(userID)
 
     // 입력 필드에 값 설정
     $("#updateBtn").attr("data-id", userID);
@@ -56,8 +55,17 @@
             <input class="form-control" id="update-mbti" placeholder="mbti">
         </div>
 
-        <div class="form">
-            <input class="form-control" id="update-work_style" placeholder="일하는 스타일">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">일하는 스타일</label>
+            <select class="form-select" id="update-work_style">
+                <option selected>일하는 스타일 선택</option>
+                <option value="리더형">리더형</option>
+                <option value="서폿형">서폿형</option>
+                <option value="숨은 다크호스형">숨은 다크호스형</option>
+                <option value="탱커형">탱커형</option>
+                <option value="노력형">노력형</option>
+                <option value="딜러형">딜러형</option>
+            </select>
         </div>
 
         <div class="form">
