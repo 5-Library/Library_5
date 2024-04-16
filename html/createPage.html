@@ -11,78 +11,64 @@
     <title>라이브러리 추가하기</title>
 </head>
 
-<script>
+<!-- <script type="module">
     // Firebase SDK 라이브러리 가져오기
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
+    //[[사용할 Firestore API 메서드 목록]]
+    //Create = addDoc
+    //Read = getDocs
+    //Update = updateDoc
+    //Delete = deleteDoc
 
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    //cdn 토큰값
     const firebaseConfig = {
-        apiKey: "AIzaSyAlqS634N8zl0a3_WczkvkM4Q5P3S-uTdc",
-        authDomain: "sparta-e9438.firebaseapp.com",
-        projectId: "sparta-e9438",
-        storageBucket: "sparta-e9438.appspot.com",
-        messagingSenderId: "495817664263",
-        appId: "1:495817664263:web:6ac892e9f415742b9407a2",
-        measurementId: "G-ZYG0WXBV0L"
+        apiKey: "AIzaSyCJUaBXlLnzg51QLhVPooGw1eNQlkzdi2o",
+        authDomain: "library-e90dd.firebaseapp.com",
+        projectId: "library-e90dd",
+        storageBucket: "library-e90dd.appspot.com",
+        messagingSenderId: "912997144460",
+        appId: "1:912997144460:web:8de2664de91826829068a9",
+        measurementId: "G-5CQMRWTJ3F"
     };
 
-
-    // Firebase 인스턴스 초기화
+    // Firebase 앱 초기화
     const app = initializeApp(firebaseConfig);
+    // Firestore 인스턴스 가져오기
     const db = getFirestore(app);
 
-    $("#postingbtn").click(async function () {
-        let name = $('#name').val();
-        let profile_img_url = $('profile_img_url').val();
-        let mbti = $('#mbti').val();
-        let work_style = $('#work_style').val();
-        let blog_url = $('#blog_url').val();;
-        let tmi = $('tmi').val();
-        
+    // 'User' 컬렉션의 문서 가져오기
+    let users = await getDocs(collection(db, "User"));
 
-        let doc = {
+    // [CREATE] 등록하기버튼
+    $("#createBtn").click(async function () {
+        let name = $("#name").val();
+        let mbti = $("#mbti").val();
+        let work_style = $("#work_style").val();
+        let tmi = $("#tmi").val();
+        let profile_img_url = $("#profile_img_url").val();
+
+        if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '') { //데이터 입력 확인
+            alert("정보를 모두 입력해주세요.")
+        } else {
+            let doc = {
+            'name' : name,
             'image': image,
             'profile_img_url': profile_img_url,
             'mbti': mbti,
             'work_style': work_style,
             'blog_url' : blog_url,
-            'tmi': tmi,
+            'tmi': tmi
         };
-        await addDoc(collection(db, "creating"), doc);
-        alert('저장 완료!');
+        await addDoc(collection(db, "User"), doc);
+        alert("저장 완료!");
         window.location.reload();
-    })
+        }
 
-    let docs = await getDocs(collection(db, "creating"));
-    docs.forEach((doc) => {
-        let row = doc.data();
 
-        let name = row['name'];
-        let profile_img_url = row['profile_img_url'];
-        let mbti = row['mbti'];
-        let work_style = row['work_style'];
-        let blog_url = row['blog_url'];
-        let tmi = row['tmi'];
-
-        let temp_html = `            
-            <div class="col">
-                    <img src="${profile_img_url}"
-                        class="card-img-top" alt="...">
-                    <img src="${blog_url}"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${name}</h5>
-                        <p class="card-text">${mbti}</p>
-                        <p class="card-text">${work_style}</p>
-                        <p class="card-text">${tmi}</p>
-                    </div>
-            </div>`;
     });
-</script>
+</script> -->
 
 <body>
     <div class="record">

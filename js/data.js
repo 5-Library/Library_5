@@ -38,12 +38,23 @@ $("#createBtn").click(async function () {
     let work_style = $("#work_style").val();
     let tmi = $("#tmi").val();
     let profile_img_url = $("#profile_img_url").val();
+    let blog_url = $("#blog_url").val();
 
-    if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '') { //데이터 입력 확인
+    if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '' || blog_url == '') { //데이터 입력 확인
         alert("정보를 모두 입력해주세요.")
     } else {
-        //[이도님 코드 작성 영역 addDoc 함수 사용해주세요]
-    }
+        let doc = {
+            'name' : name,
+            'profile_img_url': profile_img_url,
+            'mbti': mbti,
+            'work_style': work_style,
+            'blog_url' : blog_url,
+            'tmi': tmi
+        };
+        await addDoc(collection(db, "User"), doc);
+        alert("저장 완료!");
+        window.location.href = 'index.html';
+        }
 });
 
 // [UPDATE] 등록하기버튼
