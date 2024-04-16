@@ -45,3 +45,8 @@ $("#createBtn").click(async function () {
         //[이도님 코드 작성 영역 addDoc 함수 사용해주세요]
     }
 });
+
+// [UPDATE] 등록하기버튼
+$("#updateBtn").click(async function () {
+
+});

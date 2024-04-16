@@ -4,7 +4,7 @@ $(document).ready(function () {
         window.location.href = 'createPage.html';
     });
 
-    //[라이브러리 추가하기 버튼] mainPage -> createPage로 이동
+    //[테스트용] mainPage -> createPage로 이동
     $('.update-btn').click(function () {
         window.location.href = 'updatePage.html';
     });
