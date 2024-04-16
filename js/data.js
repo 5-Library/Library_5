@@ -76,12 +76,12 @@ $("#deleteBtn").click(async function () {
 });
 
 
-// [TEMPLATE]
+// [READE] - TEMPLATE
 users.forEach((user) => {
     let row = user.data();
 
     let temp_profile_info_html = `
-            <div class="profile-info" data-id="${user.id}">
+            <div class="profile-info" data-id="${user.id}" data-name="${row["name"]}" data-mbti="${row["mbti"]}" data-work_style="${row["work_style"]}" data_blog_url="${row["blog_url"]}" data_tmi="${row["tmi"]}" data-profile_img_url="${row["profile_img_url"]}">
                 <div class="profile-image">
                     <img src="${row["profile_img_url"]}" alt="원형 이미지">
                 </div>
@@ -94,9 +94,9 @@ users.forEach((user) => {
 
 
 $(".profile-info").click(function () {
-    console.log("test")
+    $(".profile-detail-info").show();
     $(".disabled-cover").show();
     $(".disabled-cover").animate({
         opacity: 0.8
-    }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경
+    }, 500);
 });

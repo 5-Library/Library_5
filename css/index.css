@@ -149,3 +149,52 @@ img {
     border-radius: 38px;
     cursor: pointer;
 }
+
+/* [profile-detail-info] 영역입니다 */
+.profile-detail-info {
+    display: none;
+    max-width: 958px;
+    width: 100%;
+    padding: 100px 70px 60px 70px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+    box-shadow: 0px 4px 23px 0px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    z-index: 5;
+}
+
+.profile-detail-info .close-btn {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #DCDCDC;
+    border-radius: 50%;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    transform: translate(50%, -50%);
+    cursor: pointer;
+}
+
+.profile-detail-info .close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    border-radius: 2px;
+    height: 50%;
+    background-color: #F9F9F9;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    /* 첫 번째 선 */
+}
+
+.profile-detail-info .close-btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    /* 두 번째 선 */
+}

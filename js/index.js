@@ -22,4 +22,13 @@ $(document).ready(function () {
         }, 500); // 500ms(1초) 동안 투명도를 0.2로 변경
     });
 
+    //[닫기 버튼] profile-detail-info
+    $(".close-btn").click(function () {
+        $(".profile-detail-info").hide();
+        $(".disabled-cover").animate({
+            opacity: 0.0
+        }, 500);
+        $(".disabled-cover").hide();
+    });
+
 });
