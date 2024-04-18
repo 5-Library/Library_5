@@ -107,27 +107,21 @@ users.forEach((user) => {
 // [데이터 전달] profile-info -> profile-detail-info
 $(".profile-info").click(function () {
     let userId = $(this).attr("data-id");
-    let name = $(this).attr("data-name");
-    let mbti = $(this).attr("data-mbti");
-    let work_style = $(this).attr("data-work_style");
-    let blog_url = $(this).attr("data-blog_url");
-    let tmi = $(this).attr("data-tmi");
-    let profile_img_url = $(this).attr("data-profile_img_url");
+    let profileAttributes = {
+        "data-id": userId,
+        "data-name": $(this).attr("data-name"),
+        "data-mbti": $(this).attr("data-mbti"),
+        "data-work_style": $(this).attr("data-work_style"),
+        "data-blog_url": $(this).attr("data-blog_url"),
+        "data-tmi": $(this).attr("data-tmi"),
+        "data-profile_img_url": $(this).attr("data-profile_img_url")
+    };
 
-    $(".profile-detail-info").attr("data-id", userId);
-    $(".profile-detail-info").attr("data-name", name);
-    $(".profile-detail-info").attr("data-mbti", mbti);
-    $(".profile-detail-info").attr("data-work_style", work_style);
-    $(".profile-detail-info").attr("data-blog_url", blog_url);
-    $(".profile-detail-info").attr("data-tmi", tmi);
-    $(".profile-detail-info").attr("data-profile_img_url", profile_img_url);
-    $(".update-btn").attr("data-id", userId);
-    $(".delete-btn").attr("data-id", userId);
+    $(".profile-detail-info").attr(profileAttributes);
+    $(".update-btn, .delete-btn").attr("data-id", userId);
 
-    console.log("test")
     $(".profile-detail-info-wrap").show();
-    $(".disabled-cover").show();
-    $(".disabled-cover").animate({
+    $(".disabled-cover").show().animate({
         opacity: 0.8
     }, 500);
 });
