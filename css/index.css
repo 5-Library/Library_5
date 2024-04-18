@@ -166,7 +166,7 @@ img {
 /* ///삭제하기 버튼 팝업 영역입니다./// */
 .delete-popup {
     display: none;
-    max-width: 800px;
+    max-width: 600px;
     width: 100%;
     padding: 80px 70px 60px 70px;
     background-color: #ffffff;
@@ -217,7 +217,7 @@ img {
     display: none;
 }
 .profile-detail-info {
-    max-width: 958px;
+    max-width: 700px;
     width: 100%;
     /*padding: 100px 70px 60px 70px;*/
     background-color: #ffffff;
@@ -281,10 +281,10 @@ img {
 .profile-detail-info .text-wrap {
     display: flex;
     gap : 18px;
-    margin-bottom: 23px;
+    margin-bottom: 16px;
 }
 
-.profile-detail-info .text-wrap .p-d-i-name {
+.profile-detail-info .p-d-i-name {
     font-size: 30px;
     font-weight: 600;
     color : #5B6FDF;
@@ -292,7 +292,7 @@ img {
 }
 
 .profile-detail-info .text-wrap .p-d-i-work_style, .p-d-i-mbti {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     padding: 8px 18px;
     background-color: #5B6FDF;
@@ -301,39 +301,26 @@ img {
 }
 
 .profile-detail-info .blog_url-wrap {
-    display: flex;
-    gap : 18px;
     margin-bottom: 80px;
 }
 
 .profile-detail-info .p-d-i-blog_url {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     background-color: #303864;
     border-radius: 20px;
-    padding : 10px 22px
-}
-
-.profile-detail-info .blog_url-wrap {
-    display: flex;
-    gap : 18px;
-    margin-bottom: 80px;
-}
-
-.profile-detail-info .tmi-wrap {
-    width: 705px;
-    height: 144px;
-    display: flex;
-    gap: 0px;
-    background-color: white;
+    padding: 8px 18px;
     margin-bottom: 80px;
 }
 
 .profile-detail-info .p-d-i-tmi {
-    color :black;
-    font-size: 24px;
-    font-family: Pretendard;
+    width: 70%;
+    display: flex;
+    gap: 0px;
+    margin-bottom: 80px;
+    color :#414141;
+    font-size: 20px;
     font-weight: 400;
     line-height: 36px;
     text-align: left;

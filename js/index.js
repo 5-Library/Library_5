@@ -14,4 +14,5 @@ $(document).ready(function () {
         $(".delete-popup").hide();
         $('.profile-detail-info-wrap').show();
     });
+    
 });
