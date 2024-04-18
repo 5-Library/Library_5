@@ -304,7 +304,11 @@ img {
     margin-bottom: 80px;
 }
 
-.profile-detail-info .p-d-i-blog_url {
+.profile-detail-info .blog-link {
+    text-decoration: none;
+}
+
+.profile-detail-info .blog-link .p-d-i-blog_url {
     color: white;
     font-size: 16px;
     font-weight: 500;

@@ -36,7 +36,7 @@ $("#createBtn").click(async function () {
     let profile_img_url = $("#profile_img_url").val();
     let blog_url = $("#blog_url").val();
 
-    if (profile_img_url === '' || name === '' || mbti === '' || work_style === '' || tmi == '' || blog_url == '') { //데이터 입력 확인
+    if (profile_img_url == '' || name == '' || mbti == '' || work_style == '' || tmi == '' || blog_url == '' || work_style == '일하는 스타일 선택') { //데이터 입력 확인
         alert("정보를 모두 입력해주세요.")
     } else {
         let doc = {
@@ -64,18 +64,23 @@ $("#updateBtn").click(async function () {
     let tmi = $("#update-tmi").val();
     let profile_img_url = $("#update-profile_img_url").val();
 
-    let dataToUpdate = {
-        'name': name,
-        'mbti': mbti,
-        'work_style': work_style,
-        'tmi': tmi,
-        'blog_url': blog_url,
-        'profile_img_url': profile_img_url
-    };
+    if (profile_img_url == '' || name == '' || mbti == '' || work_style == '' || tmi == '' || blog_url == '' || work_style == '일하는 스타일 선택') { //데이터 입력 확인
+        alert("정보를 모두 입력해주세요.")
+    } else {
+        let dataToUpdate = {
+            'name': name,
+            'mbti': mbti,
+            'work_style': work_style,
+            'tmi': tmi,
+            'blog_url': blog_url,
+            'profile_img_url': profile_img_url
+        };
+        await updateDoc(doc(db, "User", userId), dataToUpdate);
+        alert('수정되었습니다.');
+        window.location.href = 'index.html';
+    }
 
-    await updateDoc(doc(db, "User", userId), dataToUpdate);
-    alert('수정되었습니다.');
-    window.location.href = 'index.html';
+
 
 });
 
@@ -120,10 +125,11 @@ $(".profile-info").click(function () {
     $(".profile-detail-info").attr(profileAttributes);
     $(".update-btn, .delete-btn").attr("data-id", userId);
 
-    $(".profile-detail-info > .text-wrap > .p-d-i-name").text($(this).attr("data-name"));
+    $(".profile-detail-info > .p-d-i-name").text($(this).attr("data-name"));
     $(".profile-detail-info > .text-wrap > .p-d-i-work_style").text($(this).attr("data-work_style"));
     $(".profile-detail-info > .text-wrap > .p-d-i-mbti").text($(this).attr("data-mbti"));
     $(".profile-detail-info > .p-d-i-blog_url").text($(this).attr("data-blog_url"));
+    $(".profile-detail-info > .blog-link").attr("href", $(this).attr("data-blog_url"));
     $(".profile-detail-info > .p-d-i-tmi").text($(this).attr("data-tmi"));
     $(".profile-detail-info > .profile-img > .image").attr("src", $(this).attr("data-profile_img_url"));
 
