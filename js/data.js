@@ -128,7 +128,7 @@ $(".profile-info").click(function () {
     $(".profile-detail-info > .p-d-i-name").text($(this).attr("data-name"));
     $(".profile-detail-info > .text-wrap > .p-d-i-work_style").text($(this).attr("data-work_style"));
     $(".profile-detail-info > .text-wrap > .p-d-i-mbti").text($(this).attr("data-mbti"));
-    $(".profile-detail-info > .p-d-i-blog_url").text($(this).attr("data-blog_url"));
+    $(".profile-detail-info > .blog-link > .p-d-i-blog_url").text($(this).attr("data-blog_url"));
     $(".profile-detail-info > .blog-link").attr("href", $(this).attr("data-blog_url"));
     $(".profile-detail-info > .p-d-i-tmi").text($(this).attr("data-tmi"));
     $(".profile-detail-info > .profile-img > .image").attr("src", $(this).attr("data-profile_img_url"));
